@@ -25,16 +25,16 @@ public class SpringBootTddApplicationTests {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void getCar_returnsCarDetails() {
+    public void getCarReturnsCarDetails() {
         // arrange
 
         // act
         ResponseEntity<Car> response = restTemplate
-                .getForEntity("/cars/prius", Car.class);
+                .getForEntity("/cars/Mobilio", Car.class);
 
         // assert
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody().getName()).isEqualTo("prius");
+        assertThat(response.getBody().getName()).isEqualTo("Mobilio");
         assertThat(response.getBody().getType()).isEqualTo("hybrid");
 
     }
