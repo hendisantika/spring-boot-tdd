@@ -5,7 +5,11 @@ import com.hendisantika.springboottdd.exception.CarNotFoundException;
 import com.hendisantika.springboottdd.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by IntelliJ IDEA.
@@ -27,8 +31,13 @@ public class CarController {
         this.carService = carService;
     }
 
+    @GetMapping("/cars")
+    private Car getCars(@PathVariable("name") String carName) {
+        return carService.getCarDetails(carName);
+    }
+
     @GetMapping("/cars/{name}")
-    private Car getCart(@PathVariable("name") String carName) {
+    private Car getCarsByName(@PathVariable("name") String carName) {
         return carService.getCarDetails(carName);
     }
 
