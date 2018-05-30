@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * Project : spring-boot-tdd
@@ -32,8 +34,8 @@ public class CarController {
     }
 
     @GetMapping("/cars")
-    private Car getCars(@PathVariable("name") String carName) {
-        return carService.getCarDetails(carName);
+    private List<Car> getCars() {
+        return carService.getCarList();
     }
 
     @GetMapping("/cars/{name}")
