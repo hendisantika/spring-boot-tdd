@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * Project : spring-boot-tdd
@@ -30,12 +32,17 @@ public class CarService {
         this.carRepository = carRepository;
     }
 
-    @Cacheable("cars")
+    @Cacheable("carName")
     public Car getCarDetails(String carName) {
         Car car = carRepository.findByName(carName);
         if (car == null) {
             throw new CarNotFoundException();
         }
         return car;
+    }
+
+    @Cacheable("cars")
+    public List<Car> getCarList() {
+        return carRepository.findAll();
     }
 }
